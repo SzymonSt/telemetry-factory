@@ -549,7 +549,7 @@ services:
           memory: 400M
     restart: unless-stopped
     ports:
-      - "${JAEGER_SERVICE_PORT}"         # Jaeger UI
+      - "${JAEGER_SERVICE_PORT}:${JAEGER_SERVICE_PORT}"         # Jaeger UI
       - "${OTEL_COLLECTOR_PORT_GRPC}"
     environment:
       - METRICS_STORAGE_TYPE=prometheus
@@ -611,6 +611,8 @@ services:
       - --enable-feature=otlp-write-receiver
     volumes:
       - ./src/prometheus/prometheus-config.yaml:/etc/prometheus/prometheus-config.yaml
+    extra_hosts:
+      - "host.docker.internal=host-gateway"
     deploy:
       resources:
         limits:
