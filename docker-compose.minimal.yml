@@ -645,5 +645,5 @@ services:
         soft: 65536
         hard: 65536
     ports:
-      - "9200"
+      - "9200:9200"
     logging: *logging
