@@ -8,7 +8,7 @@ alerting:
   alertmanagers:
   - static_configs:
     - targets:
-      - 'alertmanager:9095'
+      - 'alertmanager:9093'
 rule_files:
   - /etc/prometheus/prometheus-rules.yaml
 scrape_configs:
