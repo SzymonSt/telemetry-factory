@@ -596,7 +596,7 @@ services:
 
   #Alertmanager
   alertmanager:
-    image: ''
+    image: prom/alertmanager:v0.26.0
     container_name: alertmanager
     restart: unless-stopped
     command:
