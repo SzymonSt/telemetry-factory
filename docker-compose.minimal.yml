@@ -594,6 +594,29 @@ services:
     environment:
       - ENVOY_PORT
 
+  #Alertmanager
+  alertmanager:
+    image: ''
+    container_name: alertmanager
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/alertmanager/alertmanager.yaml
+      - --web.listen-address=":9095"
+    volumes:
+      - ./src/alertmanager/alertmanager.yaml:/etc/alertmanager/alertmanager.yaml
+    ports:
+      - "9095:9095"
+
+  #Alertmanager receiver
+  alertmanager-receiver:
+    build:
+      context: ./
+      dockerfile: ./src/alertwebhook/Dockerfile
+    container_name: alertmanager-receiver
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+
   # Prometheus
   prometheus:
     image: ${PROMETHEUS_IMAGE}
@@ -610,6 +633,7 @@ services:
       - --enable-feature=otlp-write-receiver
     volumes:
       - ./src/prometheus/prometheus-config.yaml:/etc/prometheus/prometheus-config.yaml
+      - ./src/prometheus/prometheus-rules.yaml:/etc/prometheus/prometheus-rules.yaml
     extra_hosts:
       - "host.docker.internal=host-gateway"
     deploy:
