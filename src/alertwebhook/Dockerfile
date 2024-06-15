@@ -5,7 +5,7 @@ FROM golang:1.16-alpine
 WORKDIR /app
 
 # Copy the source code into the container
-COPY . .
+COPY ./src/alertwebhook .
 
 # Build the Go application
 RUN go build -o app
