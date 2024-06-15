@@ -601,11 +601,10 @@ services:
     restart: unless-stopped
     command:
       - --config.file=/etc/alertmanager/alertmanager.yaml
-      - --cluster.listen-address="0.0.0.0:9095"
     volumes:
       - ./src/alertmanager/alertmanager.yaml:/etc/alertmanager/alertmanager.yaml
     ports:
-      - "9095:9095"
+      - "9093:9093"
 
   #Alertmanager receiver
   alertmanager-receiver:
