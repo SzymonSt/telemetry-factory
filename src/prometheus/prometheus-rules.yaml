@@ -10,7 +10,7 @@ groups:
           description: '{{ $labels.receiver }} has a high latency' 
       - alert: ErrorRateByService
         expr: |
-          sum(rate(calls_total{status_code="STATUS_CODE_ERROR"}[10m])) by (job) / sum(rate(calls_total{}[10m])) by (job)
+          sum(rate(calls_total{status_code="STATUS_CODE_ERROR"}[10m])) by (job) / sum(rate(calls_total{}[10m])) by (job) > 0.3
         for: 1m
         annotations:
           summary: High error rate
