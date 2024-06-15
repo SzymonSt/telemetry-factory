@@ -600,9 +600,9 @@ services:
     container_name: alertmanager
     restart: unless-stopped
     command:
-      - --config.file=/etc/alertmanager/alertmanager.yaml
+      - --config.file=/etc/alertmanager/alertmanager.yml
     volumes:
-      - ./src/alertmanager/alertmanager.yaml:/etc/alertmanager/alertmanager.yaml
+      - ./src/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
     ports:
       - "9093:9093"
 
