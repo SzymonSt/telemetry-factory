@@ -539,7 +539,6 @@ services:
     container_name: jaeger
     command:
       - "--memory.max-traces=5000"
-      - "--query.base-path=/jaeger/ui"
       - "--prometheus.server-url=http://${PROMETHEUS_ADDR}"
       - "--prometheus.query.normalize-calls=true"
       - "--prometheus.query.normalize-duration=true"
