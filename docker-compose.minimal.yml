@@ -601,7 +601,7 @@ services:
     restart: unless-stopped
     command:
       - --config.file=/etc/alertmanager/alertmanager.yaml
-      - --web.listen-address=":9095"
+      - --cluster.listen-address="0.0.0.0:9095"
     volumes:
       - ./src/alertmanager/alertmanager.yaml:/etc/alertmanager/alertmanager.yaml
     ports:
