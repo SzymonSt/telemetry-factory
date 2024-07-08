@@ -21,7 +21,7 @@ receivers:
           {{- end -}}
           )
         {{- end }}
-     text: |-
+      text: |-
         {{ range .Alerts -}}
         *Alert:* {{ .Annotations.title }}{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
 
