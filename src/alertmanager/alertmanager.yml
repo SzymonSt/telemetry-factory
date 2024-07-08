@@ -21,13 +21,13 @@ receivers:
           {{- end -}}
           )
         {{- end }}
-     text: >-
-      {{ range .Alerts -}}
-      *Alert:* {{ .Annotations.title }}{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
+     text: |-
+        {{ range .Alerts -}}
+        *Alert:* {{ .Annotations.title }}{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
 
-      *Description:* {{ .Annotations.description }}
+        *Description:* {{ .Annotations.description }}
 
-      *Details:*
-        {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+        *Details:*
+          {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+          {{ end }}
         {{ end }}
-      {{ end }}
