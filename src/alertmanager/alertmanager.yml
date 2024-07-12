@@ -27,6 +27,8 @@ receivers:
 
         *Description:* {{ .Annotations.description }}
 
+        *Timestamp:* {{ .StartsAt}}
+
         *Details:*
           {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
           {{ end }}
