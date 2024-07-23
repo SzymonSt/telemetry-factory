@@ -606,6 +606,14 @@ services:
     ports:
       - "9093:9093"
 
+  #Backstage
+  backstage:
+    image: backstage
+    container_name: backstage
+    restart: unless-stopped
+    ports:
+     - "7007:7007"
+
   #Alertmanager receiver
   alertmanager-receiver:
     build:
