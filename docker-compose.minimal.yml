@@ -613,6 +613,7 @@ services:
     restart: unless-stopped
     ports:
      - "7007:7007"
+     - "3000:3000"
 
   #Alertmanager receiver
   alertmanager-receiver:
