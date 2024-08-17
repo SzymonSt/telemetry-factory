@@ -625,6 +625,22 @@ services:
     ports:
       - "5001:5001"
 
+  # Cadvisor
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    ports:
+    - 9095:9095
+    command:
+    - --port=9095
+    volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+    depends_on:
+    - prometheus
+
   # Prometheus
   prometheus:
     image: ${PROMETHEUS_IMAGE}
