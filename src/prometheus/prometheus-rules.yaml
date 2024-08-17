@@ -16,3 +16,11 @@ groups:
           summary: High error rate
           description: '{{ $labels.receiver }} has a high error rate'
           service: '{{ $labels.job }}'
+      - alert: LastSeen
+        expr: |
+          container_last_seen{name="flagd"} - time() > 20
+        for: 5s
+        annotations:
+          summary: Last seen more than 20s ago
+          description: '{{ $labels.receiver }} has a high error rate'
+          container: '{{ $labels.name }}'
