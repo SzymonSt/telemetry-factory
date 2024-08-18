@@ -18,8 +18,7 @@ groups:
           service: '{{ $labels.job }}'
       - alert: LastSeen
         expr: |
-          (container_last_seen{name="flagd"} - time())*-1 > 20
-        for: 5s
+          (container_last_seen{name="flagd"} - time())*-1 > 10
         annotations:
           summary: Last seen more than 20s ago
           description: '{{ $labels.receiver }} last seen more than 20s ago'
