@@ -1,48 +1,16 @@
 global:
   resolve_timeout: 1m
-  slack_api_url: 'https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX'
-route:
-  receiver: 'slack-notifications'
+  slack_api_url: "https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX"
 route:
   receiver: "keep"
-  group_by: ['alertname']
-
+  group_by: ["alertname"]
 
 receivers:
   - name: "keep"
     webhook_configs:
-    - url: 'https://d793-46-204-13-108.ngrok-free.app/alerts/event/prometheus'
-      send_resolved: true
-      http_config:
-        basic_auth:
-          username: api_key
-          password: fb301bcf-328b-47ab-91d4-98f195fd4e24
-  - name: 'slack-notifications'
-    slack_configs:
-    - channel: '#incidents'
-      send_resolved: false
-      icon_url: https://avatars3.githubusercontent.com/u/3380462
-      title: |-
-        [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }} for {{ .CommonLabels.job }}
-        {{- if gt (len .CommonLabels) (len .GroupLabels) -}}
-          {{" "}}(
-          {{- with .CommonLabels.Remove .GroupLabels.Names }}
-            {{- range $index, $label := .SortedPairs -}}
-              {{ if $index }}, {{ end }}
-              {{- $label.Name }}="{{ $label.Value -}}"
-            {{- end }}
-          {{- end -}}
-          )
-        {{- end }}
-      text: |-
-        {{ range .Alerts -}}
-        *Alert:* {{ .Annotations.title }}{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
-
-        *Description:* {{ .Annotations.description }}
-
-        *Timestamp:* {{ .StartsAt}}
-
-        *Details:*
-          {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
-          {{ end }}
-        {{ end }}
+      - url: "https://d793-46-204-13-108.ngrok-free.app/alerts/event/prometheus"
+        send_resolved: true
+        http_config:
+          basic_auth:
+            username: api_key
+            password: fb301bcf-328b-47ab-91d4-98f195fd4e24
