@@ -3,7 +3,23 @@ global:
   slack_api_url: 'https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX'
 route:
   receiver: 'slack-notifications'
+route:
+  receiver: "keep"
+  group_by: ['alertname']
+  group_wait:      15s
+  group_interval:  15s
+  repeat_interval: 1m
+  continue: true
+
 receivers:
+  - name: "keep"
+    webhook_configs:
+    - url: 'https://d793-46-204-13-108.ngrok-free.app/alerts/event/prometheus'
+      send_resolved: true
+      http_config:
+        basic_auth:
+          username: api_key
+          password: fb301bcf-328b-47ab-91d4-98f195fd4e24
   - name: 'slack-notifications'
     slack_configs:
     - channel: '#incidents'
