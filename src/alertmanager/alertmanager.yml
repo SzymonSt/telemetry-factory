@@ -8,7 +8,7 @@ route:
 receivers:
   - name: "keep"
     webhook_configs:
-      - url: "https://d793-46-204-13-108.ngrok-free.app/alerts/event/prometheus"
+      - url: "https://b7df-46-204-13-108.ngrok-free.app/alerts/event/prometheus"
         send_resolved: true
         http_config:
           basic_auth:
