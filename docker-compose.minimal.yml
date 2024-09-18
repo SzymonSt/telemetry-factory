@@ -616,14 +616,14 @@ services:
      - "3000:3000"
 
   #Alertmanager receiver
-  # alertmanager-receiver:
-  #   build:
-  #     context: ./
-  #     dockerfile: ./src/alertwebhook/Dockerfile
-  #   container_name: alertmanager-receiver
-  #   restart: unless-stopped
-  #   ports:
-  #     - "5001:5001"
+  alertmanager-receiver:
+    build:
+      context: ./
+      dockerfile: ./src/alertwebhook/Dockerfile
+    container_name: alertmanager-receiver
+    restart: unless-stopped
+    ports:
+      - "5002:5002"
 
   # Cadvisor
   cadvisor:
