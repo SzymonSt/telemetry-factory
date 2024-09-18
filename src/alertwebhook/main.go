@@ -16,6 +16,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -31,7 +32,7 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 	if err := json.Indent(&buf, b, " >", "  "); err != nil {
 		panic(err)
 	}
-	log.Println(buf.String())
+	fmt.Printf("Received alert: %s\n", buf.String())
 }
 
 func main() {
