@@ -1,16 +1,15 @@
 global:
   resolve_timeout: 1m
-  slack_api_url: "https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX"
 route:
-  receiver: "keep"
+  receiver: "singal0ne"
   group_by: ["alertname"]
 
 receivers:
-  - name: "keep"
+  - name: "singal0ne"
     webhook_configs:
-      - url: "https://140f-46-204-13-108.ngrok-free.app/alerts/event/prometheus"
+      - url: ""
         send_resolved: true
-        http_config:
-          basic_auth:
-            username: api_key
-            password: fb301bcf-328b-47ab-91d4-98f195fd4e24
+        # http_config:
+        #   basic_auth:
+        #     username: 
+        #     password: 
