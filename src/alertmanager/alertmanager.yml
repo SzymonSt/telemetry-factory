@@ -1,6 +1,6 @@
 global:
   slack_api_url: 'https://hooks.slack.com/services/TOKEN'
-  
+
 route:
   receiver: "singal0ne"
   group_by: ["alertname"]
@@ -14,7 +14,6 @@ receivers:
         #   basic_auth:
         #     username: 
         #     password: 
-  - name: 'slack-notifications'
     slack_configs:
-      - channel: '#alerts'
+      - channel: '#incidents'
         send_resolved: true
