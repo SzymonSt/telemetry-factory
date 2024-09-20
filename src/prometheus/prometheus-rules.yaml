@@ -19,6 +19,7 @@ groups:
       - alert: LastSeen
         expr: |
           (container_last_seen{name="flagd"} - time())*-1 > 10
+        for: 10s
         annotations:
           summary: Last seen more than 20s ago
           description: '{{ $labels.receiver }} last seen more than 20s ago'
