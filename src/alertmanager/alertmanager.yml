@@ -3,7 +3,7 @@ global:
 
 route:
   receiver: "singal0ne"
-  group_by: []
+  group_by: ['...']
 
 receivers:
   - name: "singal0ne"
