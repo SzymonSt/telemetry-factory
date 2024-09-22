@@ -8,7 +8,7 @@ route:
 receivers:
   - name: "singal0ne"
     webhook_configs:
-      - url: "http://alertmanager-receiver:5002/api/webhook"
+      - url: "http://172.171.253.127:8080/api/webhook/66efdc630f0f167a619f434e/66efded70f0f167a619f434f/zdqS_z06TxKG"
         send_resolved: true
         # http_config:
         #   basic_auth:
