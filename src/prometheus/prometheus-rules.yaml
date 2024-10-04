@@ -1,13 +1,6 @@
 groups:
   - name: otel-collector.rules
     rules:
-      - alert: HighLatency
-        expr: |
-          histogram_quantile(0.90,rate(duration_milliseconds_bucket{job= "frontend",span_name="grpc.oteldemo.CartService/AddItem"}[10m])) > 4.5
-        for: 1m
-        annotations:
-          summary: High latency rate
-          description: '{{ $labels.receiver }} has a high latency' 
       - alert: ErrorRateByService
         expr: |
           sum(rate(calls_total{status_code="STATUS_CODE_ERROR"}[10m])) by (job) / sum(rate(calls_total{}[10m])) by (job) > 0.3
