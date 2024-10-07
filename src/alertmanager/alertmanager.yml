@@ -2,18 +2,20 @@ global:
   slack_api_url: 'https://hooks.slack.com/services/TOKEN'
 
 route:
-  receiver: "singal0ne"
+  receiver: "signal0ne"
   group_by: ['...']
 
 receivers:
-  - name: "singal0ne"
+  - name: "signal0ne"
     webhook_configs:
       - url: "https://3577-46-204-13-108.ngrok-free.app/api/webhook/66efdc630f0f167a619f434e/66efded70f0f167a619f434f/zdqS_z06TxKG"
         send_resolved: true
         # http_config:
         #   basic_auth:
         #     username: 
-        #     password: 
+        #     password:
+      - url: "http://alertmanager-receiver:5002/api/webhook"
+        send_resolved: true
     slack_configs:
       - channel: '#incidents'
         send_resolved: true
