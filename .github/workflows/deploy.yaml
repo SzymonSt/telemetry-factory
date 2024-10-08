@@ -22,7 +22,7 @@ jobs:
       run: |
         sshpass -p "$PASS" ssh -o StrictHostKeyChecking=no $USER@$HOST << EOF
           sudo -S <<< "$PASS" pwd
-          sudo -S <<< "$PASS" cd /root/telemetry-factory
+          cd /root/telemetry-factory
           sudo -S <<< "$PASS" git restore . ; git pull origin main
           sudo -S <<< "$PASS" docker compose -f docker-compose.minimal.yml up --force-recreate --remove-orphans --detach
         EOF
