@@ -1,0 +1,27 @@
+name: Deploy to Remote Server
+
+on:
+  push:
+    branches: [ main ] 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install sshpass
+      run: sudo apt-get install sshpass
+
+    - name: Deploy to server
+      env:
+        HOST: ${{ secrets.SERVER_HOST }}
+        USER: ${{ secrets.SERVER_USER }}
+        PASS: ${{ secrets.SERVER_PASS }}
+      run: |
+        sshpass -p "$PASS" ssh -o StrictHostKeyChecking=no $USER@$HOST << EOF
+          sudo -S <<< "$PASS" cd /root/telemetry-factory
+          sudo -S <<< "$PASS" git restore . ; git pull origin main
+          sudo -S <<< "$PASS" docker compose -f docker-compose.minimal.yml up --force-recreate --remove-orphans --detach
+        EOF
