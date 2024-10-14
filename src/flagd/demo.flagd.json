@@ -32,7 +32,8 @@
       "description": "Triggers high cpu load in the ad service",
       "state": "ENABLED",
       "variants": {
-        "on": true
+        "on": true,
+        "off": false
       },
       "defaultVariant": "off"
     },
